@@ -1,0 +1,42 @@
+.singleCard {
+    width: 345px;
+    margin: 5px;
+}
+.channelValues {
+    display: grid;
+    position: absolute;
+    left: 10px;
+    top:18px;
+}
+.main {
+    min-height: 124px;
+}
+.noData {
+    min-height: 124px;
+}
+.channelValues span {
+    line-height: 2;
+}
+.channelValues span h6 {
+    font-size: 16px;
+    margin-left: 10px;
+}
+.heroValues {
+    display: flex;
+}
+.heroValues span h6 {
+    font-size: 17px;
+}
+
+/* Media queries for proper alignment of card layout based on the respective resolution */
+@media screen and (min-width: 320px) and (max-width: 630px) {
+    .heroValues span h6 {
+        font-size: 13px;
+    }
+    .heroValues h6 {
+        font-size: 14px; 
+    }
+    .channelValues span h6 {
+        font-size: 14px;
+    }
+}
