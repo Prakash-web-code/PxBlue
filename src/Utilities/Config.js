@@ -11,23 +11,24 @@ import {
 } from '@material-ui/icons'
 import { Labels, Units, Defaults } from '../Utilities/Constants'
 
+// Required Utilities from the Config object  
 const Config = {
-    Temperature: {
+    temperature: {
         icon: <Temp fontSize={'inherit'} htmlColor={Colors.black[500]} />,
         label: Labels.Temperature,
         units: Units.Temperature
     },
-    Humidity: {
+    humidity: {
         icon: <Moisture fontSize={'inherit'} htmlColor={Colors.blue[200]} />,
         label: Labels.Humidity,
         units: Units.Humidity
     },
-    Flow: {
+    flow: {
         icon: <Flow fontSize={'inherit'} htmlColor={Colors.black[300]} />,
         label: Labels.Flow,
         units: Units.Flow
     },
-    Volume: {
+    volume: {
         icon: <GasCylinder fontSize={'inherit'} htmlColor={Colors.black[500]} />,
         label: Labels.Volume,
         units: Units.Volume

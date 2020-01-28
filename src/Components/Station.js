@@ -1,3 +1,4 @@
+// importing required dependent files and utilities 
 import React from 'react'
 import { Hero, HeroBanner, ScoreCard, ChannelValue } from '@pxblue/react-components/core';
 import { List, ListItem, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
@@ -13,7 +14,7 @@ import EmptyState from '@pxblue/react-components/core/EmptyState';
 
 
 
-// Card Footer maintained in object structure in order to re use
+// Card Footer maintained in object structure in order to reuse
 const Footer = (
     <List>
         <ListItem>
@@ -22,14 +23,29 @@ const Footer = (
         </ListItem>
     </List>
 )
-const Station = () => {
+// Hero block for looping the dynamic jsx
+const heroBlock = (stationValues) => {
+    let climateObj = [];
+    for (let climateValue in stationValues) {
+        climateObj.push(<Hero
+            key={climateValue}
+            icon={Config[climateValue].icon}
+            label={Config[climateValue].label}
+            iconSize={48}
+            value={stationValues[climateValue]}
+            units={Config[climateValue].units}
+            fontSize={'normal'}
+        />);
+    }
+    return climateObj;
 
+}
+// Functional Component for rendering the UI
+const Station = () => {
     return Stationdata.map((station, index) => {
-        const stationValues = station['values']['temperature'] ? true : false;
         const isAlarm = station['alarmCount'] > 0 ? true : false;
         const isEvent = station['eventCount'] > 0 ? true : false;
 
-        console.log(isAlarm)
         return (
             <Grid key={index} item md={6} lg={4} xs={12} sm={6} className={Classes.singleCard}>
                 <ScoreCard
@@ -73,22 +89,7 @@ const Station = () => {
                                 </div>
 
                                 <div className={Classes.heroValues}>
-                                    <Hero
-                                        icon={stationValues ? Config.Temperature.icon : Config.Flow.icon}
-                                        label={stationValues ? Config.Temperature.label : Config.Flow.label}
-                                        iconSize={48}
-                                        value={stationValues ? station.values.temperature : station.values.flow}
-                                        units={stationValues ? Config.Temperature.units : Config.Flow.units}
-                                        fontSize={'normal'}
-                                    />
-                                    <Hero
-                                        icon={stationValues ? Config.Humidity.icon : Config.Volume.icon}
-                                        label={stationValues ? Config.Humidity.label : Config.Volume.label}
-                                        iconSize={48}
-                                        value={stationValues ? station.values.humidity : station.values.volume}
-                                        units={stationValues ? Config.Humidity.units : Config.Volume.units}
-                                        fontSize={'normal'}
-                                    />
+                                    {heroBlock(station.values)}
                                 </div>
 
                             </div> : null}
